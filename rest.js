@@ -13,6 +13,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var query = "INSERT INTO ??(??,??) VALUES (?,?)";
         var table = ["user","password","name",md5(newUser.password),newUser.name];
         query = mysql.format(query,table);
+        console.log(query);
         connection.query(query,function(err,rows){
             if(err) {
 				res.status(409);
@@ -29,6 +30,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     var query = "select 1 from ?? where ?? like ? and ?? like ?";
     var table = ["user", "username", username, "password", md5(password)];
     query = mysql.format(query,table);
+    console.log(query);
     var q = connection.query(query,function(err,rows){
         if(err) {
 		    res.status(500);
@@ -48,6 +50,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     var query = "select * from ?? where ?? like ?";
     var table = ["device", "user_id", user_id];
     query = mysql.format(query,table);
+    console.log(query);
     var q = connection.query(query,function(err,rows){
         if(err) {
 		    res.status(500);
@@ -66,6 +69,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     var query = "update device set ??=? where ??=? AND ??=?";
     var table = ["Maintenance", message, "user_id", user_id, "device_id", device_id];
     query = mysql.format(query,table);
+    console.log(query);
     var q = connection.query(query,function(err,rows){
         if(err) {
 		    res.status(500);
